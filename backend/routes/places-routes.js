@@ -25,6 +25,11 @@ router.post(
   placesControllers.createPlace
 );
 
+router.post(
+  '/comment',
+  placesControllers.createComment
+);
+
 router.patch(
   '/:pid',
   [

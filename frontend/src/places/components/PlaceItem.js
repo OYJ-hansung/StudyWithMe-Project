@@ -15,11 +15,35 @@ const PlaceItem = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
   const [showDetail, setShowDetail] = useState(false);
+  const [showComment, setShowComment] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const openMapHandler = () => setShowDetail(true);
+  const openMapHandler = () => {
+    setShowDetail(true);
+    localStorage.setItem(
+      'placeData',
+      JSON.stringify({
+        placeId: props.placeId,
+      })
+    );
+  };
 
   const closeMapHandler = () => setShowDetail(false);
+
+  const openCommentHandler = () => {
+    setShowComment(true);
+    localStorage.setItem(
+      'placeData',
+      JSON.stringify({
+        placeId: props.placeId,
+      })
+    );
+  }
+
+  const closeCommentHandler = () => {
+    setShowComment(false);
+    localStorage.removeItem('placeData');
+  };
 
   const showDeleteWarningHandler = () => {
     setShowConfirmModal(true);
