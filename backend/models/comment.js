@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
   comment: { type: String, required: true },
   creatorId: { type: String, required: true },
+  userName: { type: String, required: true },
   placeId: { type: mongoose.Types.ObjectId, required: true, ref: 'Place' }
+
 });
 
 // 데이터베이스에서는 places로 collection명이 저장된다.

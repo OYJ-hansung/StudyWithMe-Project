@@ -18,6 +18,7 @@ import './PlaceForm.css';
 
 /* 사용자에 새로운 장소를 추가하는 부분 */
 const SpecificPlace = () => {
+  const userName = window.localStorage.getItem('userName');
   const auth = useContext(AuthContext);
   const location = useLocation();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -40,6 +41,7 @@ const SpecificPlace = () => {
       formData.append('comment', formState.inputs.comment.value);
       formData.append('placeId', placeId);
       formData.append('creatorId', creatorId);
+      formData.append('userName', userName);
       await sendRequest(process.env.REACT_APP_BACKEND_URL + '/places/comment', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
@@ -59,6 +61,7 @@ const SpecificPlace = () => {
       console.log(responseData.comments);        
     } catch (err) {}
   };
+
   useEffect(() => {    
     fetchComments();
   }, [sendRequest, placeId]);
@@ -82,10 +85,11 @@ const SpecificPlace = () => {
       {!isLoading && loadedComments && (
         <ul>
           {loadedComments.map((comment, index)=>{
-            return(<li key={index}>
-              <h2>{comment.comment}</h2>             
-            </li>)            
-          })}
+            return(
+            <li key={index}>
+              <h2>{comment.userName}: {comment.comment}</h2>             
+            </li>
+            )})}
         </ul>
       )}              
       <form className="place-form-specific" onSubmit={commentSubmitHandler}>
@@ -98,7 +102,6 @@ const SpecificPlace = () => {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="유효한 댓글을 입력하세요."
           onInput={inputHandler}
-          name="comment-input"
         />
         <footer className='footer-button'>
           <Button type="submit" disabled={!formState.isValid}>코멘트 작성</Button>       

@@ -31,7 +31,7 @@ router.post(
   placesControllers.createPlace
 );
 
-const data = upload.fields([{comment: 'comment'}, {placeId: 'placeId'}])
+const data = upload.fields([{comment: 'comment'}, {placeId: 'placeId'}]);
 
 router.post(
   '/comment',

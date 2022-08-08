@@ -240,11 +240,12 @@ const createComment = async (req, res, next) => {
     );
   }
 
-  const { comment, placeId, creatorId } = req.body;
+  const { comment, placeId, creatorId, userName } = req.body;
 
   const createdComment = new Comment({
     comment,
     creatorId,
+    userName,
     placeId,
     // creator: req.userData.userId
   });
@@ -288,7 +289,6 @@ const createComment = async (req, res, next) => {
 
 const getCommentsByPlaceId = async (req, res, next) => {
   const placeId = req.params.pid;
-  console.log(placeId);
   let placeWithComments;
   try {
     placeWithComments = await Place.findById(placeId).populate('comments');
@@ -304,8 +304,10 @@ const getCommentsByPlaceId = async (req, res, next) => {
     comments: placeWithComments.comments.map(comment =>
       comment.toObject({ getters: true })
     )
-  });
+  });  
 };
+
+
 
 exports.getPlaceById = getPlaceById;
 exports.getPlacesByUserId = getPlacesByUserId;

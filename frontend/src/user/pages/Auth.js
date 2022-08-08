@@ -80,6 +80,10 @@ const Auth = () => {
             'Content-Type': 'application/json' //백엔드가 제이슨 타입을 요구한다. 이를 위한 헤더
           }
         );
+        console.log(responseData.name);
+        localStorage.setItem(
+          'userName',responseData.name          
+        );
         auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     } else {
