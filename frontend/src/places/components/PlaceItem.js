@@ -9,41 +9,17 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import './PlaceItem.css';
-
+import { Link } from 'react-router-dom';
 /* 장소의 정보를 보여주는 페이지 */
 const PlaceItem = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
   const [showDetail, setShowDetail] = useState(false);
-  const [showComment, setShowComment] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const openMapHandler = () => {
-    setShowDetail(true);
-    localStorage.setItem(
-      'placeData',
-      JSON.stringify({
-        placeId: props.placeId,
-      })
-    );
-  };
+  const openMapHandler = () => setShowDetail(true);
 
   const closeMapHandler = () => setShowDetail(false);
-
-  const openCommentHandler = () => {
-    setShowComment(true);
-    localStorage.setItem(
-      'placeData',
-      JSON.stringify({
-        placeId: props.placeId,
-      })
-    );
-  }
-
-  const closeCommentHandler = () => {
-    setShowComment(false);
-    localStorage.removeItem('placeData');
-  };
 
   const showDeleteWarningHandler = () => {
     setShowConfirmModal(true);
@@ -92,11 +68,9 @@ const PlaceItem = props => {
         </div>
         <div className="place-item__info">
             <h2>{props.title}</h2>
-            <h3>{props.address}</h3>
             <br />
             <textarea value={props.code}></textarea>
         </div>
-
       </Modal>
       <Modal /* 하위 버튼에서 삭제을 클릭했을시 showConfirmModal = true가 되면서 visible */
         show={showConfirmModal}
@@ -132,9 +106,19 @@ const PlaceItem = props => {
             <p>{props.description}</p>
           </div>
           <div className="place-item__actions">
-            <Button inverse onClick={openMapHandler}>
+            <Button inverse to={{
+                pathname: `/places/specific/${props.id}`,
+                state: {
+                  placeId: props.id,
+                  title: props.title,
+                  code: props.code,
+                  image: props.image,
+                  creatorId: props.creatorId
+                },
+              }} >
               자세히
-            </Button>
+            </Button>         
+      
             {auth.userId === props.creatorId && (
               <Button to={`/places/${props.id}`}>수정</Button>
             )}

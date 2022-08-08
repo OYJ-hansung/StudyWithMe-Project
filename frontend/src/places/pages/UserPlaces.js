@@ -20,6 +20,8 @@ const UserPlaces = () => {
           `${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`
         );
         setLoadedPlaces(responseData.places);
+        console.log(responseData);
+        console.log(loadedPlaces);
       } catch (err) {}
     };
     fetchPlaces();

@@ -23,6 +23,7 @@ const NewPlace = React.lazy(()=>import('./places/pages/NewPlace'));
 const UserPlaces = React.lazy(()=>import('./places/pages/UserPlaces'));
 const UpdatePlace = React.lazy(()=>import('./places/pages/UpdatePlace'));
 const Auth = React.lazy(()=>import('./user/pages/Auth'));
+const SpecificPlace = React.lazy(()=>import('./places/pages/SpecificPlace'));
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -41,9 +42,12 @@ const App = () => {
         <Route path="/places/new" exact>
           <NewPlace />  {/* 새로운 장소를 등록 */}
         </Route>
+        <Route path="/places/specific/:placeId">
+          <SpecificPlace /> {/* 자세히 페이지 */}
+        </Route>   
         <Route path="/places/:placeId">
           <UpdatePlace /> {/* 장소를 업데이트 하는 부분 */}
-        </Route>
+        </Route>     
         <Redirect to="/" />
       </Switch>
     );

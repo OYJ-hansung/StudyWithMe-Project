@@ -10,3 +10,50 @@
   background: white;
   /* text-align: center; */
 }
+
+.place-form-specific {
+  position: relative;
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-bottom: 1rem;
+  width: 80%;
+  max-width: 40rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: white;
+  /* text-align: center; */
+}
+
+.footer-button{
+  text-align: center;
+}
+
+.place-item__image {
+  display: inline-block;
+  width: 60%;
+  height: 12.5rem;
+  margin-right: 1.5rem;
+}
+
+.place-item__info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.outer-div {
+  text-align: center;
+}
+
+.comment-list {
+  list-style: none;
+  margin: 1rem auto;
+  padding: 0;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.textarea-border{
+  border-color: #719ECE;
+  box-shadow: 0 0 10px #719ECE;
+}
