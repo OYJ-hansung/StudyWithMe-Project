@@ -27,17 +27,17 @@ const MainNavigation = props => {
       </SideDrawer>
 
       <MainHeader>
-        <button
-          className="main-navigation__menu-btn"
-          onClick={openDrawerHandler}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-        <h1 className="main-navigation__title">
-          <Link to="/">STUDY WITH ME</Link>
-        </h1>
+        <div className='menu-btn-combined'>
+          <button
+            className="main-navigation__menu-btn"
+            onClick={openDrawerHandler}
+          >
+            <span />
+            <span />
+            <span />
+          </button>          
+          <h1 className="main-navigation__title"><Link to="/">SWM</Link></h1>
+        </div>
         <nav className="main-navigation__header-nav">
           <NavLinks />
         </nav>

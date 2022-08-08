@@ -11,7 +11,7 @@ export const NavLinks = props => {
     <ul className="nav-links">
       <li>
         <NavLink to="/" exact>
-          모든 회원
+          메인으로
         </NavLink>
       </li>
       {auth.isLoggedIn && (

@@ -4,6 +4,7 @@ import UsersList from '../components/UsersList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import Slide from './Slide';
 
 const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -28,8 +29,10 @@ const Users = () => {
         <div className="center">
           <LoadingSpinner /> {/* 로딩 */}
         </div>
-      )}
+      )}      
+      <Slide/>
       {!isLoading && loadedUsers && <UsersList items={loadedUsers} />} {/* 로딩중이지 않고, 유저를 받아왔으면 유저목록을 보여줘라 > UserList */}
+        
     </React.Fragment>
   );
 };
